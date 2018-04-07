@@ -1,0 +1,15 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "welcome";
+@import "pages";
+
+
+.navbar-user {
+  float: right;
+  margin: 10px 15px auto auto;
+}
+
+.user-logon {
+  text-align: right;
+  margin-right: 15rem;
+}
