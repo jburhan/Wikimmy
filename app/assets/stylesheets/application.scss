@@ -2,32 +2,10 @@
 @import "bootstrap";
 @import "welcome";
 @import "pages";
+@import "devise";
 
 
 .navbar-user {
   float: right;
   margin: 10px 15px auto auto;
-}
-
-.login-container {
-  text-align: center;
-  border: 1px solid black;
-  margin: 10% 30% 10% 30%;
-}
-
-.login-container .form-control{
-  width: 40%;
-  text-align: center;
-  margin: auto 30% auto 30%;
-}
-
-.login-container .btn-success{
-  width: 40%;
-  text-align: center;
-  margin: auto 25% auto 25%;
-}
-
-.login-links {
-  padding-bottom: 10px;
-  padding-top: 10px;
 }

@@ -1,9 +1,24 @@
 <div class="welcome-message">
   <h1>Wikimmy</h1>
   <h2>Wikimmy is a website to build your own wiki!</h2>
-  <p>
-    Sign up for an account to start! or sign in to check your wiki!
-  </p>
-    <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-default' %>
-    <%= link_to "Sign in", new_user_session_path, class: 'btn btn-default' %>
-</div>
+  <% unless user_signed_in? %>
+    <p>
+      Sign up for an account to start! or sign in to check your wiki!
+    </p>
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-default' %>
+      <%= link_to "Sign in", new_user_session_path, class: 'btn btn-default' %>
+  <% end %>
+
+
+  <div class="row">
+    <h2>Our Missions</h2>
+      <div class="missions">
+        <p>Be Kind</p>
+      </div>
+      <div class="missions">
+        <p>Be Knowledgeable</p>
+      </div>
+      <div class="missions">
+        <p>Be Authoritative</p>
+      </div>
+  </div>
