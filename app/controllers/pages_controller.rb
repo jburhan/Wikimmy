@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     @page = Page.new
     @page.title = params[:page][:title]
     @page.body = params[:page][:body]
-    @wiki.private = params[:wiki][:private]
+    @page.private = params[:page][:private]
     @page.user = current_user
 
     if @page.save
@@ -38,7 +38,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.title = params[:page][:title]
     @page.body = params[:page][:body]
-    @wiki.private = params[:wiki][:private]
+    @page.private = params[:page][:private]
     @page.user = current_user
 
     if @page.save
