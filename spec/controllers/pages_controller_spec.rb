@@ -10,7 +10,7 @@ RSpec.describe PagesController, type: :controller do
     before do
       sign_in my_user
     end
-    
+
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
