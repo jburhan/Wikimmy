@@ -7,13 +7,13 @@ RSpec.describe PagesController, type: :controller do
   let(:my_user) { create(:user) }
 
   before do
-    create_session(my_user)
+    sign_in my_user
   end
 
   describe "GET show" do
     it "returns http success" do
       get :show, params: { id: my_page.id }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:redirect)
     end
 
     it "renders the #show view" do
@@ -21,7 +21,7 @@ RSpec.describe PagesController, type: :controller do
       expect(response).to render_template :show
     end
 
-    it "assigns my_post to @page" do
+    it "assigns my_page to @page" do
       get :show, params: { id: my_page.id }
       expect(assigns(:page)).to eq(my_page)
     end
