@@ -1,6 +1,5 @@
 require 'rails_helper'
 include RandomData
-include SessionsHelper
 
 RSpec.describe PagesController, type: :controller do
   let(:my_page) { create(:page) }
