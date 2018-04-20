@@ -41,6 +41,8 @@ gem 'thor', '0.20'
 
 gem 'bootstrap-sass'
 
+gem 'pundit'
+
 group :development do
   gem 'listen', '~> 3.0.5'
 end

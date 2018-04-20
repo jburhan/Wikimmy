@@ -16,8 +16,9 @@ class PagesController < ApplicationController
     @page = Page.new
     @page.title = params[:page][:title]
     @page.body = params[:page][:body]
-    @page.private = params[:page][:private]
     @page.user = current_user
+
+    authorize @page
 
     if @page.save
       flash[:notice] = "Wiki was saved."
@@ -36,8 +37,9 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.title = params[:page][:title]
     @page.body = params[:page][:body]
-    @page.private = params[:page][:private]
     @page.user = current_user
+
+    authorize @page
 
     if @page.save
       flash[:notice] = "Wiki was updated."
@@ -50,6 +52,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page = Page.find(params[:id])
+    authorize @page
 
     if @page.destroy
       flash[:notice] = "\"#{@page.title}\" was deleted successfully."
@@ -59,5 +62,6 @@ class PagesController < ApplicationController
       render :show
     end
   end
+
 
 end
