@@ -18,6 +18,8 @@ class PagesController < ApplicationController
     @page.body = params[:page][:body]
     @page.user = current_user
 
+    authorize @page
+
     if @page.save
       flash[:notice] = "Wiki was saved."
       redirect_to @page
@@ -37,6 +39,8 @@ class PagesController < ApplicationController
     @page.body = params[:page][:body]
     @page.user = current_user
 
+    authorize @page
+
     if @page.save
       flash[:notice] = "Wiki was updated."
       redirect_to @page
@@ -48,6 +52,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page = Page.find(params[:id])
+    authorize @page
 
     if @page.destroy
       flash[:notice] = "\"#{@page.title}\" was deleted successfully."
@@ -57,5 +62,6 @@ class PagesController < ApplicationController
       render :show
     end
   end
+
 
 end
