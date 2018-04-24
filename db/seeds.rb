@@ -1,6 +1,8 @@
+require "faker"
+
 5.times do
   User.create!(
-    email: RandomData.random_email,
+    email: Faker::Internet.email,
     password: RandomData.random_sentence
   )
 end
@@ -10,8 +12,8 @@ users = User.all
 
 50.times do
   page = Page.create!(
-    title: RandomData.random_sentence,
-    body: RandomData.random_page,
+    title: Faker::LeagueOfLegends.champion,
+    body: Faker::LeagueOfLegends.quote,
     user: users.sample
   )
 end

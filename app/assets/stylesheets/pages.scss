@@ -1,3 +1,11 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.media-heading {
+  border: solid 1px black;
+  border-radius: 3px;
+  max-width: 135px;
+  text-align: center;
+  padding: 10px;
+}
+
+.wiki-index {
+  margin-left: 50px;
+}

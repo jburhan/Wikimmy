@@ -41,7 +41,11 @@ gem 'thor', '0.20'
 
 gem 'bootstrap-sass'
 
+gem 'stripe'
+
 gem 'pundit'
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development do
   gem 'listen', '~> 3.0.5'
