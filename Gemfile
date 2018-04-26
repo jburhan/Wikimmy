@@ -43,6 +43,8 @@ gem 'bootstrap-sass'
 
 gem 'stripe'
 
+gem 'figaro', '1.0'
+
 gem 'pundit'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
@@ -52,6 +54,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails', '~> 4.0'

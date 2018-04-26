@@ -37,7 +37,9 @@
     </div>
   <% end %>
 
-  <h3>Cancel my account</h3>
+    <% if current_user.role == 'premium' %>
+      <%= button_to "Downgrade to Standard", downgrade_user_path(current_user), :data => { :confirm => "Are you sure?" }, :method => :put, class: "btn btn-warning" %>
+    <% end %>
 
     <%= button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-danger',  data: { confirm: "Are you sure?" }, method: :delete %>
 
