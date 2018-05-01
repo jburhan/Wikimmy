@@ -14,7 +14,8 @@ users = User.all
   page = Page.create!(
     title: Faker::LeagueOfLegends.champion,
     body: Faker::LeagueOfLegends.quote,
-    user: users.sample
+    user: users.sample,
+    private: [true, false].sample
   )
 end
 

@@ -3,10 +3,10 @@ include RandomData
 
 RSpec.describe PagesController, type: :controller do
   let(:my_page) { create(:page) }
-  let(:my_user) { create(:user) }
-
+  
   before do
-    sign_in my_user
+    my_user = User.new(email: "testEmail", password: "password")
+    my_user.save
   end
 
   describe "GET show" do

@@ -6,6 +6,14 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    unless (@page.private == false) || current_user.premium? || current_user.admin?
+      flash[:alert] = "You must be a premium user to view private wikis."
+      if current_user
+        redirect_to new_charge_path
+      else
+        redirect_to new_user_registration_path
+      end
+    end
   end
 
   def new
@@ -37,6 +45,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.title = params[:page][:title]
     @page.body = params[:page][:body]
+    @page.private = params[:page][:private]
     @page.user = current_user
 
     authorize @page
