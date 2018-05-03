@@ -18,4 +18,22 @@ module PagesHelper
       page.title
     end
   end
+
+  def markdown(content)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
+      autolink: true,
+      space_after_headers: true,
+      fenced_code_blocks: true,
+      underline: true,
+      highlight: true,
+      strikethrough: true,
+      superscript: true,
+      footnotes: true,
+      footnote_def: true,
+      list: true,
+      tables: true,
+      quote: true
+    })
+    @markdown.render(content)
+  end
 end

@@ -47,6 +47,8 @@ gem 'figaro', '1.0'
 
 gem 'pundit'
 
+gem 'redcarpet'
+
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development do

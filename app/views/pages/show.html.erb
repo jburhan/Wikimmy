@@ -3,7 +3,7 @@
   <small>
     submitted <%= time_ago_in_words(@page.created_at) %> ago <br>
   </small>
-    <p><%= @page.body %></p>
+    <p><%= markdown(@page.body).html_safe %></p>
 </div>
 
 <div class="button-show">
