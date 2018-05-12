@@ -2,110 +2,120 @@ require 'rails_helper'
 include RandomData
 
 RSpec.describe PagesController, type: :controller do
-  let(:my_page) { create(:page) }
-  
+  let(:user) { create(:user) }
+  let(:page) { create(:page) }
+
   before do
-    my_user = User.new(email: "testEmail", password: "password")
-    my_user.save
+      sign_in(user)
+    end
+
+  describe "GET #index" do
+
+    it "returns http success" do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
   end
 
-  describe "GET show" do
+  describe "GET #show" do
     it "returns http success" do
-      get :show, params: { id: my_page.id }
+      get :show, id: page.id
       expect(response).to have_http_status(:success)
     end
 
     it "renders the #show view" do
-      get :show, params: { id: my_page.id }
-      expect(response).to render_template :show
-    end
-
-    it "assigns my_page to @page" do
-      get :show, params: { id: my_page.id }
-      expect(assigns(:page)).to eq(my_page)
-    end
+        get :show, id: page.id
+        expect(response).to render_template :show
+      end
   end
 
-  describe "GET new" do
+  describe "GET #new" do
     it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
     end
 
     it "renders the #new view" do
-      get :new
-      expect(response).to render_template :new
+        get :new, id: page.id
+        expect(response).to render_template :new
     end
 
     it "instantiates @page" do
-      get :new
+      get :new, id: page.id
       expect(assigns(:page)).not_to be_nil
     end
   end
 
   describe "POST create" do
-    it "increases the number of Page by 1" do
-      expect{ post :create, params: { page: {title: RandomData.random_sentence, body: RandomData.random_page} } }.to change(Page,:count).by(1)
+    it "increases the number of Wiki by 1" do
+      expect{ page }.to change(Page, :count).by(1)
     end
 
-    it "assigns the new page to @page" do
-      post :create, params: { page: {title: RandomData.random_sentence, body: RandomData.random_page} }
+    it "assigns the new wiki to @page" do
+      post :create, id: page.id, page: {title: "New Wiki Title", body: "New Wiki Body"}
       expect(assigns(:page)).to eq Page.last
     end
 
-    it "redirects to the new page" do
-      post :create, params: { page: {title: RandomData.random_sentence, body: RandomData.random_page} }
+    it "redirects to the new post" do
+      post :create, id: page.id, page: {title: "New Wiki Title", body: "New Wiki Body"}
       expect(response).to redirect_to [Page.last]
     end
   end
 
-  describe "GET edit" do
+  describe "GET #edit" do
     it "returns http success" do
-      get :edit, params: {id: my_page.id }
+      get :edit, id: page.id
       expect(response).to have_http_status(:success)
     end
 
     it "renders the #edit view" do
-      get :edit, params: {id: my_page.id }
-      expect(response).to render_template :edit
+        get :edit, id: page.id
+        expect(response).to render_template :edit
     end
 
-    it "assigns page to be updated to @page" do
-      get :edit, params: { id: my_page.id }
-      page_instance = assigns(:page)
+    it "assigns wiki to be updated to @age" do
+      get :edit, id: page.id
+      post_instance = assigns(:page)
 
-      expect(page_instance.id).to eq my_page.id
-      expect(page_instance.title).to eq my_page.title
-      expect(page_instance.body).to eq my_page.body
+      expect(post_instance.id).to eq page.id
+      expect(post_instance.title).to eq page.title
+      expect(post_instance.body).to eq page.body
     end
   end
 
   describe "PUT update" do
-    it "updates page with expected attributes" do
-      new_title = RandomData.random_sentence
-      new_body = RandomData.random_page
+    it "updates wiki with expected attributes" do
+      new_title = "New Wiki Title"
+      new_body = "New Wiki Body"
 
-      put :update, params: { id: my_page.id, page: {title: new_title, body: new_body} }
+      put :update, id: page.id, page: {title: new_title, body: new_body}
 
       updated_page = assigns(:page)
-      expect(updated_page.id).to eq my_page.id
+      expect(updated_page.id).to eq page.id
       expect(updated_page.title).to eq new_title
       expect(updated_page.body).to eq new_body
     end
 
-    it "redirects to the updated page" do
-      new_title = RandomData.random_sentence
-      new_body = RandomData.random_page
+    it "redirects to the updated wiki" do
+      new_title = "New Wiki Title"
+      new_body = "New Wiki Body"
 
-      put :update, params: { id: my_page.id, page: {title: new_title, body: new_body} }
-      expect(response).to redirect_to [ my_page]
+      put :update, id: page.id, page: {title: new_title, body: new_body}
+
+      expect(response).to redirect_to [page]
     end
   end
 
   describe "DELETE destroy" do
-    it "returns http redirect" do
-      delete :destroy, params: { id: my_page.id }
-      expect(response).to redirect_to([my_page])
+    it "deletes the wiki" do
+      delete :destroy, id: page.id
+      count = Page.where({id: page.id}).size
+      expect(count).to eq 0
+    end
+
+    it "redirects to page index" do
+      delete :destroy, id: page.id
+      expect(response).to redirect_to(page)
     end
   end
 
