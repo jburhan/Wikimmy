@@ -3,7 +3,7 @@
   <small>
     submitted <%= time_ago_in_words(@page.created_at) %> ago <br>
   </small>
-  <p> Owner: <%= @wiki.user.name %></p>
+  <p> Owner: <%= @page.user.email %></p>
   <%= render partial: 'collaborators/list' %>
     <p><%= markdown(@page.body).html_safe %></p>
 </div>

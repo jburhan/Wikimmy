@@ -21,13 +21,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new
-    @page.title = params[:page][:title]
-    @page.body = params[:page][:body]
-    @page.user = current_user
-
-    authorize @page
-
+    @page = current_user.pages.build(page_params)
     if @page.save
       flash[:notice] = "Wiki was saved."
       redirect_to @page
@@ -43,10 +37,6 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find(params[:id])
-    @page.title = params[:page][:title]
-    @page.body = params[:page][:body]
-    @page.private = params[:page][:private]
-    @page.user = current_user
 
     authorize @page
 
@@ -70,6 +60,12 @@ class PagesController < ApplicationController
       flash.now[:alert] = "There was an error deleting the wiki."
       render :show
     end
+  end
+
+  private
+
+  def page_params
+    params.require(:page).permit(:title, :body, :private)
   end
 
 
