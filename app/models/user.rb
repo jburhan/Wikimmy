@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   before_save { self.role ||= :standard }
   has_many :pages, dependent: :destroy
+  has_many :collaborators
+  has_many :page_collabs, source: 'page', through: :collaborators
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

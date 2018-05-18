@@ -1,0 +1,10 @@
+<% if @page.private? && policy(@page).destroy?  %>
+
+  <%= form_for [page, Collaborator.new] do |f| %>
+    Add Collaborators using their Email
+     <%= f.label :user %>
+     <%= f.text_field :user, placeholder: "User Email" %>
+
+     <%= f.submit "Save", class: 'btn btn-success' %>
+  <% end %>
+<% end %>

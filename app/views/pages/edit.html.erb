@@ -17,9 +17,12 @@
              <% end %>
            </div>
          <% end %>
-         
+
          <%= f.submit "Save", class: 'btn btn-success' %>
        <% end %>
     </div>
   </div>
+    collaborators: <%= @page.collaborators.count %>
+
+    <%= render partial: 'collaborators/form', locals: { page: @page } %>
 </div>
