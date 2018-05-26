@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
-  resources :pages do
+  resources :pages, only: [:index, :show] do
     resources :collaborators, only: [:create, :destroy]
   end
 

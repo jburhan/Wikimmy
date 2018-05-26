@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
+
   def index
-    @user = current_user
+    @pages = Page.all
     @pages = policy_scope(Page)
   end
 

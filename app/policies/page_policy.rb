@@ -6,11 +6,22 @@ class PagePolicy
     @page = page
   end
 
+  def index?
+  end
+
   def create?
-    user.premium?
+    user.premium?|| user.standard?
+  end
+
+  def new?
+    user.premium? || user.standard?
   end
 
   def update?
+    user.admin? || page.user == user
+  end
+
+  def edit?
     user.admin? || page.user == user
   end
 

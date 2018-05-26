@@ -1,6 +1,6 @@
 module PagesHelper
   def user_can_create?
-     (current_user && current_user.premium?) || (current_user && current_user.standard?)
+     current_user
   end
 
   def user_can_edit_and_delete?(page)
