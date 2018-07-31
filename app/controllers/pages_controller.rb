@@ -22,7 +22,9 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = current_user.page.build(page_params)
+    @page = current_user.pages.build(page_params)
+
+    authorize @page
     if @page.save
       flash[:notice] = "Wiki was saved."
       redirect_to @page
@@ -38,8 +40,6 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find(params[:id])
-
-    authorize @page
 
     if @page.update_attributes(page_params)
       flash[:notice] = "Wiki was updated."
